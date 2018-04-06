@@ -1,0 +1,50 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(tidyverse)
+
+top10<-tothud%>%
+  filter(Year == "2017")
+top10<-top10%>%
+  arrange(desc(`Total Homeless`))
+top10<-top10[-c(1,54:57),]#remove total and US terretories
+head(top10, 10)
+tail(top10, 10)
+
+homesN$RegionName<-as.character(homesN$RegionName)
+
+plot10<-homesN%>%
+  filter(RegionName %in% c("California","New York", "Florida","Texas","Washington","Massachusetts","Pennsylvania","Oregon", "Colorado", "Illinois"))
+
+plot10b<-homesN%>%
+  filter(RegionName %in% c("West Virginia", "Vermont","Rhode Island","North Dakota","Delaware","South Dakota","Wyoming","Montana","Missouri","New Hampshire"))
+
+
+qplot(data = homesN,x= date, y = `Median House Prices`, color = RegionName, geom = "line")
+
+qplot(data = plot10,x= date, y = `Median House Prices`, color = RegionName, geom = "line")
+
+qplot(data = plot10b,x= date, y = `Median House Prices`, color = RegionName, geom = "line")
+
+hudt<-tothud%>%
+  filter(State %in% c("CA","NY", "FL","TX","WA","MA","PA","OR","CO","IL"))
+
+hudtb<-tothud%>%
+  filter(State %in% c("MT","MS","NH","WV","VT","RI","ND","DE","SD","WY"))
+
+qplot(x = hudt$Year, y = hudt$`Total Homeless`, color = hudt$State, geom = "line")
+
+qplot(x = hudtb$Year, y = hudtb$`Total Homeless`, color = hudtb$State, geom = "line")```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
