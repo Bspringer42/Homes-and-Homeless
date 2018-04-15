@@ -91,10 +91,7 @@ hud7<-hud7%>%
   rename(`Total Homeless` = `Total Homeless, 2007`)
 
 
-tothud<-rbind(hud7,hud8,hud9,hud10,hud11,hud12,hud13,hud14,hud15,hud16,hud17)#combine all table into one```
+tothud<-rbind(hud7,hud8,hud9,hud10,hud11,hud12,hud13,hud14,hud15,hud16,hud17)#combine all table into one
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

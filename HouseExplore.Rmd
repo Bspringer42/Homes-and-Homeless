@@ -13,7 +13,7 @@ library(tidyverse)
 top10<-tothud%>%
   filter(Year == "2017")
 top10<-top10%>%
-  arrange(desc(`Total Homeless`))
+  arrange(desc(`Total.Homeless`))
 top10<-top10[-c(1,54:57),]#remove total and US terretories
 head(top10, 10)
 tail(top10, 10)
@@ -39,12 +39,18 @@ hudt<-tothud%>%
 hudtb<-tothud%>%
   filter(State %in% c("MT","MS","NH","WV","VT","RI","ND","DE","SD","WY"))
 
-qplot(x = hudt$Year, y = hudt$`Total Homeless`, color = hudt$State, geom = "line")
+qplot(x = hudt$Year, y = hudt$`Total.Homeless`, color = hudt$State, geom = "line")
 
-qplot(x = hudtb$Year, y = hudtb$`Total Homeless`, color = hudtb$State, geom = "line")```
+qplot(x = hudtb$Year, y = hudtb$`Total.Homeless`, color = hudtb$State, geom = "line")
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+plot10c<-ApartN%>%
+  filter(RegionName %in% c("California","New York", "Florida","Texas","Washington","Massachusetts","Pennsylvania","Oregon", "Colorado", "Illinois"))
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+plot10d<-ApartN%>%
+  filter(RegionName %in% c("West Virginia", "Vermont","Rhode Island","North Dakota","Delaware","South Dakota","Wyoming","Montana","Missouri","New Hampshire"))
+
+qplot(data = plot10c,x= date, y = `Median Rent Prices`, color = RegionName, geom = "line")
+
+qplot(data = plot10d,x= date, y = `Median Rent Prices`, color = RegionName, geom = "line")
+
