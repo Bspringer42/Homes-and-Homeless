@@ -1,0 +1,190 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(tidyverse)
+
+
+homes7<-Homes%>%
+  select(`RegionName`,`2007-01`:`2007-12`)
+
+homes7<-homes7%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2007-01`:`2007-12`))%>%
+  mutate(Year = "2007")
+
+
+homes8<-Homes%>%
+  select(`RegionName`,`2008-01`:`2008-12`)
+
+homes8<-homes8%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2008-01`:`2008-12`))%>%
+  mutate(Year = "2008")
+
+homes9<-Homes%>%
+  select(`RegionName`,`2009-01`:`2009-12`)
+
+homes9<-homes9%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2009-01`:`2009-12`))%>%
+  mutate(Year = "2009")
+
+homes10<-Homes%>%
+  select(`RegionName`,`2010-01`:`2010-12`)
+
+homes10<-homes10%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2010-01`:`2010-12`))%>%
+  mutate(Year = "2010")
+
+homes11<-Homes%>%
+  select(`RegionName`,`2011-01`:`2011-12`)
+
+homes11<-homes11%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2011-01`:`2011-12`))%>%
+  mutate(Year = "2011")
+
+homes12<-Homes%>%
+  select(`RegionName`,`2012-01`:`2012-12`)
+
+homes12<-homes12%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2012-01`:`2012-12`))%>%
+  mutate(Year = "2012")
+
+homes13<-Homes%>%
+  select(`RegionName`,`2013-01`:`2013-12`)
+
+homes13<-homes13%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2013-01`:`2013-12`))%>%
+  mutate(Year = "2013")
+
+homes14<-Homes%>%
+  select(`RegionName`,`2014-01`:`2014-12`)
+
+homes14<-homes14%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2014-01`:`2014-12`))%>%
+  mutate(Year = "2014")
+
+homes15<-Homes%>%
+  select(`RegionName`,`2015-01`:`2015-12`)
+
+homes15<-homes15%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2015-01`:`2015-12`))%>%
+  mutate(Year = "2015")
+
+homes16<-Homes%>%
+  select(`RegionName`,`2016-01`:`2016-12`)
+
+homes16<-homes16%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2016-01`:`2016-12`))%>%
+  mutate(Year = "2013")
+
+homes17<-Homes%>%
+  select(`RegionName`,`2017-01`:`2017-12`)
+
+homes17<-homes17%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2017-01`:`2017-12`))%>%
+  mutate(Year = "2013")
+
+
+a10<-Apart%>%
+  select(`RegionName`,`2010-01`:`2010-12`)
+
+a10<-a10%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2010-01`:`2010-12`))%>%
+  mutate(Year = "2010")
+
+a11<-Apart%>%
+  select(`RegionName`,`2011-01`:`2011-12`)
+
+a11<-a11%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2011-01`:`2011-12`))%>%
+  mutate(Year = "2011")
+
+a12<-Apart%>%
+  select(`RegionName`,`2012-01`:`2012-12`)
+
+a12<-a12%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2012-01`:`2012-12`))%>%
+  mutate(Year = "2012")
+
+a13<-Apart%>%
+  select(`RegionName`,`2013-01`:`2013-12`)
+
+a13<-a13%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2013-01`:`2013-12`))%>%
+  mutate(Year = "2013")
+
+a14<-Apart%>%
+  select(`RegionName`,`2014-01`:`2014-12`)
+
+a14<-a14%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2014-01`:`2014-12`))%>%
+  mutate(Year = "2014")
+
+a15<-Apart%>%
+  select(`RegionName`,`2015-01`:`2015-12`)
+
+a15<-a15%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2015-01`:`2015-12`))%>%
+  mutate(Year = "2015")
+
+a16<-Apart%>%
+  select(`RegionName`,`2016-01`:`2016-12`)
+
+a16<-a16%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2016-01`:`2016-12`))%>%
+  mutate(Year = "2013")
+
+a17<-Apart%>%
+  select(`RegionName`,`2017-01`:`2017-12`)
+
+a17<-a17%>%
+  group_by(RegionName)%>%
+  summarise(avg = mean(`2017-01`:`2017-12`))%>%
+  mutate(Year = "2013")
+
+
+homesM<-rbind(homes7,homes8,homes9,homes10,homes11,homes12,homes13,homes14,homes15,homes16,homes17)
+
+apartM<-rbind(a10,a11,a12,a13,a14,a15,a16,a17)
+
+homesM$RegionName<-setNames(state.abb,state.name)[homesM$RegionName]#change state names to their abbreviations
+
+homesM<-rename(homesM,`State` = `RegionName`)
+
+apartM$RegionName<-setNames(state.abb,state.name)[apartM$RegionName]#change state names to their abbreviations
+
+apartM<-rename(apartM,`State` = `RegionName`)
+
+
+tothudM<-filter(tothud, tothud$State %in% state.abb)
+
+
+tot<-inner_join(tothudM,homesM)
+
+tota<-inner_join(tothudM, apartM)
+```
+
+
