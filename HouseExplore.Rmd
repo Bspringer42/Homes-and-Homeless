@@ -13,7 +13,7 @@ library(tidyverse)
 top10<-tothud%>%
   filter(Year == "2017")
 top10<-top10%>%
-  arrange(desc(`Total.Homeless`))
+  arrange(desc(`Total Homeless`))
 top10<-top10[-c(1,54:57),]#remove total and US terretories
 head(top10, 10)
 tail(top10, 10)
@@ -39,9 +39,9 @@ hudt<-tothud%>%
 hudtb<-tothud%>%
   filter(State %in% c("MT","MS","NH","WV","VT","RI","ND","DE","SD","WY"))
 
-qplot(x = hudt$Year, y = hudt$`Total.Homeless`, color = hudt$State, geom = "line")
+qplot(x = hudt$Year, y = hudt$`Total Homeless`, color = hudt$State, geom = "line", xlab = "Year", ylab = "Total Homeless")
 
-qplot(x = hudtb$Year, y = hudtb$`Total.Homeless`, color = hudtb$State, geom = "line")
+qplot(x = hudtb$Year, y = hudtb$`Total Homeless`, color = hudtb$State, geom = "line", xlab = "Year", ylab = "Total Homeless")
 
 
 plot10c<-ApartN%>%
@@ -53,4 +53,24 @@ plot10d<-ApartN%>%
 qplot(data = plot10c,x= date, y = `Median Rent Prices`, color = RegionName, geom = "line")
 
 qplot(data = plot10d,x= date, y = `Median Rent Prices`, color = RegionName, geom = "line")
+
+
+library(fiftystater)
+
+data("fifty_states")
+
+top10$State<-setNames(state.name,state.abb)[top10$State]
+
+top10f<-filter(top10, State != "N/A")
+
+top10f$State<-tolower(top10f$State)
+
+ggplot(top10f, aes(map_id = State))+
+  geom_map(aes(fill = `Total Homeless`), map = fifty_states)+
+  expand_limits(x=fifty_states$long,y=fifty_states$lat)+
+  coord_map()+
+  scale_x_continuous(breaks = NULL) + 
+  scale_y_continuous(breaks = NULL) +
+  labs(x = "", y = "")+
+  theme()
 

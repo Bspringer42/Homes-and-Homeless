@@ -10,6 +10,7 @@ Try executing this chunk by clicking the *Run* button within the chunk or by pla
 ```{r}
 library(tidyverse)
 library(readxl)
+library(zoo)
 
 hud17<-read_excel("~/data/2007-2017-PIT-Counts-by-State.xlsx", sheet = 2)
 
@@ -92,6 +93,9 @@ hud7<-hud7%>%
 
 
 tothud<-rbind(hud7,hud8,hud9,hud10,hud11,hud12,hud13,hud14,hud15,hud16,hud17)#combine all table into one
+
+tothud$`Total Homeless`<-as.numeric(tothud$`Total Homeless`)
+tothud$Year<-as.numeric(tothud$Year)
 
 
 

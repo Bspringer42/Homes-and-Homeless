@@ -1,0 +1,63 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(tidyverse)
+library(corrplot)
+
+tota<-rename(tota, `apartment.avg` =`avg`)#rename before join
+
+
+tot<-filter(tot, avg != 0)
+tota<-filter(tota, apartment.avg != 0)#remove any N/As
+
+
+ggplot(tot, aes(avg, `Total Homeless`))+
+  geom_point()+
+  geom_smooth(method = 'lm', formula=y~x)+
+  xlab("Average Home Price")+
+  ylab("Homeless Population")+
+  ggtitle("Housing-National")#simple regression
+  
+ggplot(tota, aes(apartment.avg, `Total Homeless`))+
+  geom_point()+
+  geom_smooth(method = 'lm', formula = y~x)+
+  xlab("Average Rent Price")+
+  ylab("Homeless Population")+
+  ggtitle("Rentals-National")#simple regression
+
+
+
+
+totm<-inner_join(tot,tota)
+
+c<-select(totm, -State, -Year)
+
+c<-cor(c)
+
+corrplot(c, method = "number")#correlation plot
+
+con<-lm(`Total Homeless`~avg+apartment.avg,totm)
+
+summary(con)
+
+ggplot(totm) +
+  geom_jitter(aes(avg, `Total Homeless`), colour = "Black")+
+  geom_smooth(aes(avg, `Total Homeless`), method = "lm", se = FALSE)+
+  geom_jitter(aes(apartment.avg, `Total Homeless`), colour = "Red")+
+  geom_smooth(aes(apartment.avg, `Total Homeless`), method = "lm", se = FALSE)+
+  ggtitle("Multiple Regression")+
+  ylab("Homeless Population")+
+  xlab("Housing Cost")#Multiple regression```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

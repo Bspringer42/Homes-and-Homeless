@@ -182,9 +182,16 @@ apartM<-rename(apartM,`State` = `RegionName`)
 tothudM<-filter(tothud, tothud$State %in% state.abb)
 
 
+apartM$Year<-as.numeric(apartM$Year)
+homesM$Year<-as.numeric(homesM$Year)
+
 tot<-inner_join(tothudM,homesM)
 
 tota<-inner_join(tothudM, apartM)
+
+tot$`Total Homeless`<-as.numeric(tot$`Total Homeless`)
+
+tota$`Total Homeless`<-as.numeric(tota$`Total Homeless`)
 ```
 
 
