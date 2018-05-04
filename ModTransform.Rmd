@@ -12,7 +12,7 @@ library(tidyverse)
 
 
 homes7<-Homes%>%
-  select(`RegionName`,`2007-01`:`2007-12`)
+  select(`RegionName`,`2007-01`:`2007-12`)#setting up a transformation to combine tables
 
 homes7<-homes7%>%
   group_by(RegionName)%>%

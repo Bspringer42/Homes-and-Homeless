@@ -44,7 +44,11 @@ c<-cor(c)
 corrplot(c, method = "number")#correlation plot
 
 con<-lm(`Total Homeless`~avg+apartment.avg,totm)
+con2<-lm(`Total Homeless`~avg,tot)
+con3<-lm(`Total Homeless`~apartment.avg,tota)
 
+summary(con2)
+summary(con3)
 summary(con)
 
 ggplot(totm) +
@@ -54,7 +58,10 @@ ggplot(totm) +
   geom_smooth(aes(apartment.avg, `Total Homeless`), method = "lm", se = FALSE)+
   ggtitle("Multiple Regression")+
   ylab("Homeless Population")+
-  xlab("Housing Cost")#Multiple regression```
+  xlab("Housing Cost")#Multiple regression
+
+
+```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
 
